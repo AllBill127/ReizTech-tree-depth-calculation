@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,7 +16,9 @@ namespace Tree_depth_calculation
             // populate tree
             PopulateTree(root, 0);
             // Calculate and print tree depth
-            Console.WriteLine("\n\nTree depth is = " + TreeDepth(root));
+            Console.WriteLine("\n\nRandom tree depth is = " + TreeDepth(root));
+
+            Console.WriteLine("\n\nExample tree depth is = " + TreeDepth(ExampleTree()));
             return;
         }
 
@@ -65,6 +68,35 @@ namespace Tree_depth_calculation
 
                 root.AddBranch(newB);
             }
+        }
+
+        public static Branch ExampleTree()
+        {
+            // depth 0
+            Branch root = new Branch();
+
+            // depth 1
+            root.AddBranch(new Branch());
+
+            root.AddBranch(new Branch());
+
+            // depth 2
+            root.GetBranches()[0].AddBranch(new Branch());
+            
+            root.GetBranches()[1].AddBranch(new Branch());
+            root.GetBranches()[1].AddBranch(new Branch());
+            root.GetBranches()[1].AddBranch(new Branch());
+
+            // depth 3
+            root.GetBranches()[1].GetBranches()[0].AddBranch(new Branch());
+
+            root.GetBranches()[1].GetBranches()[1].AddBranch(new Branch());
+            root.GetBranches()[1].GetBranches()[1].AddBranch(new Branch());
+
+            // depth 4
+            root.GetBranches()[1].GetBranches()[1].GetBranches()[0].AddBranch(new Branch());
+
+            return root;
         }
     }
 }
